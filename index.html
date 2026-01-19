@@ -18,7 +18,7 @@
         /* Playerul Audio - Vizibil pentru prieteni */
         .live-player { margin-top: 15px; width: 300px; filter: invert(1); opacity: 0.7; }
         
-        /* ADMIN - Ascuns pentru public */
+        /* ADMIN - Ascuns pentru public (apare doar cu #admin la link) */
         #admin-controls { display: none; margin-top: 15px; gap: 10px; }
         .btn { padding: 8px 20px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; }
         .on { background: #1DB954; color: white; }
@@ -42,7 +42,7 @@
     </div>
 
     <audio controls class="live-player">
-        <source src="http://shaincast.caster.fm:2199/tunein/source.pls" type="audio/mpeg">
+        <source src="http://sapircast.caster.fm:16390/9npsi" type="audio/mpeg">
         Browser-ul tau nu suporta sunetul.
     </audio>
 
@@ -52,7 +52,7 @@
     </div>
 
     <script>
-        // Doar tu vezi butoanele daca adaugi #admin la link
+        // Arata butoanele doar daca link-ul contine #admin
         if(window.location.hash === '#admin') {
             document.getElementById('admin-controls').style.display = 'flex';
         }
