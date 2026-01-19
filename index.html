@@ -7,15 +7,15 @@
         body { background-color: #000; color: white; font-family: 'Arial', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
         .bg-glow { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, #002200 0%, #000 90%); z-index: -1; }
         .outer-frame { position: relative; width: 680px; height: 220px; border-radius: 20px; border: 2px solid #1DB954; box-shadow: 0 0 35px rgba(29, 185, 84, 0.3); background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .widget-container { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
-        iframe { width: 95%; height: 160px; border: none; display: block; }
+        .widget-container { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+        iframe { width: 95%; height: 160px; border: none; }
         .offline-msg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #080808; display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 10; }
-        .offline-text { font-size: 3rem; color: #ffffff; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+        .offline-text { font-size: 3rem; color: #ffffff; font-weight: 900; text-transform: uppercase; }
         .branding { text-align: center; margin-top: 30px; }
         .title { font-size: 3rem; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin: 0; }
         .dj-name { font-size: 1.2rem; color: #1DB954; font-weight: bold; margin-top: 5px; letter-spacing: 2px; text-transform: uppercase; }
         
-        /* Butoane ascunse implicit */
+        /* Butoanele sunt ascunse total pentru vizitatori */
         #admin-controls { display: none; margin-top: 20px; gap: 10px; }
         .btn { padding: 8px 20px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 0.7rem; }
         .on { background: #1DB954; color: white; }
@@ -34,19 +34,16 @@
             <iframe src="https://nuttylmao.github.io/spotify-widget?client_id=08bc7ba426374f8f91828b99b591ccde&client_secret=f22adb56588e4afeb3d3fddfe8dde2a7&refresh_token=AQAYu3uZLdSk3W_2Mk6wiDfZNaZwk5NhIjmDvy7bk3w_OK_G2dLjpwWmExhjZXpPlyfOodGwZQcfnOHglonAyiGPrcao8iIre9BRhurSoghPN6cqKgwAgI-PMaUVCln9UI8" scrolling="no"></iframe>
         </div>
     </div>
-
     <div class="branding">
         <h1 class="title">Spotify Radio</h1>
         <div class="dj-name">DJ Vasile Versace</div>
     </div>
-
     <div id="admin-controls">
         <button class="btn on" onclick="document.getElementById('radio').classList.remove('is-off')">Online</button>
         <button class="btn off" onclick="document.getElementById('radio').classList.add('is-off')">Offline</button>
     </div>
-
     <script>
-        // Functie care verifica daca esti admin
+        // Aceasta linie verifica daca ai scris #admin in link
         if(window.location.hash === '#admin') {
             document.getElementById('admin-controls').style.display = 'flex';
         }
