@@ -2,157 +2,42 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <title>Spotify Radio - Centrare Perfectă</title>
+    <title>Spotify Radio - DJ Vasile Versace</title>
     <style>
-        body {
-            background-color: #000;
-            color: white;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .bg-glow {
-            position: absolute;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle, #002200 0%, #000 90%);
-            z-index: -1;
-        }
-
-        /* Dreptunghiul principal */
-        .outer-frame {
-            position: relative;
-            width: 680px; 
-            height: 220px; /* Am mărit puțin înălțimea pentru a nu mai tăia din widget */
-            border-radius: 20px;
-            border: 2px solid #1DB954;
-            box-shadow: 0 0 35px rgba(29, 185, 84, 0.3);
-            background: #000;
-            display: flex;
-            align-items: center; 
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        /* Containerul intern care elimină orice tăiere */
-        .widget-container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        iframe {
-            width: 95%; 
-            height: 160px; /* Înălțimea naturală a widgetului pentru a se vedea totul clar */
-            border: none;
-            display: block;
-            position: relative;
-            top: 0; /* Am resetat top la 0 pentru a elimina tăierea de sus */
-        }
-
-        /* Mesaj Offline */
-        .offline-msg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #080808;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .offline-text {
-            font-size: 3rem;
-            color: #ffffff;
-            font-weight: 900;
-            text-transform: uppercase;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-        }
-
-        /* Identitate */
-        .branding {
-            text-align: center;
-            margin-top: 45px;
-        }
-
-        .title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin: 0;
-        }
-
-        .dj-name {
-            font-size: 1.4rem;
-            color: #1DB954;
-            font-weight: bold;
-            margin-top: 8px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* Butoane */
-        .controls {
-            margin-top: 30px;
-            display: flex;
-            gap: 20px;
-        }
-
-        .btn {
-            padding: 12px 35px;
-            border: none;
-            border-radius: 4px;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
+        body { background-color: #000; color: white; font-family: 'Arial', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; overflow: hidden; }
+        .bg-glow { position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, #002200 0%, #000 90%); z-index: -1; }
+        .outer-frame { position: relative; width: 680px; height: 220px; border-radius: 20px; border: 2px solid #1DB954; box-shadow: 0 0 35px rgba(29, 185, 84, 0.3); background: #000; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .widget-container { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; position: relative; }
+        iframe { width: 95%; height: 160px; border: none; display: block; position: relative; top: 0; }
+        .offline-msg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #080808; display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 10; }
+        .offline-text { font-size: 3rem; color: #ffffff; font-weight: 900; text-transform: uppercase; text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+        .branding { text-align: center; margin-top: 45px; }
+        .title { font-size: 3.5rem; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin: 0; }
+        .dj-name { font-size: 1.4rem; color: #1DB954; font-weight: bold; margin-top: 8px; letter-spacing: 2px; text-transform: uppercase; }
+        .controls { margin-top: 30px; display: flex; gap: 20px; }
+        .btn { padding: 12px 35px; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
         .on { background: #1DB954; color: white; }
         .off { background: #333; color: #888; }
-
-        /* Logică stări */
         .is-off .outer-frame { border-color: #ffffff; }
         .is-off .widget-container { display: none; }
         .is-off .offline-msg { display: flex; }
     </style>
 </head>
 <body id="radio">
-
     <div class="bg-glow"></div>
-
     <div class="outer-frame">
-        <div class="offline-msg">
-            <span class="offline-text">Radio Offline</span>
-        </div>
-        
+        <div class="offline-msg"><span class="offline-text">Radio Offline</span></div>
         <div class="widget-container">
-            <iframe 
-                src="https://nuttylmao.github.io/spotify-widget?client_id=08bc7ba426374f8f91828b99b591ccde&client_secret=f22adb56588e4afeb3d3fddfe8dde2a7&refresh_token=AQAYu3uZLdSk3W_2Mk6wiDfZNaZwk5NhIjmDvy7bk3w_OK_G2dLjpwWmExhjZXpPlyfOodGwZQcfnOHglonAyiGPrcao8iIre9BRhurSoghPN6cqKgwAgI-PMaUVCln9UI8" 
-                scrolling="no">
-            </iframe>
+            <iframe src="https://nuttylmao.github.io/spotify-widget?client_id=08bc7ba426374f8f91828b99b591ccde&client_secret=f22adb56588e4afeb3d3fddfe8dde2a7&refresh_token=AQAYu3uZLdSk3W_2Mk6wiDfZNaZwk5NhIjmDvy7bk3w_OK_G2dLjpwWmExhjZXpPlyfOodGwZQcfnOHglonAyiGPrcao8iIre9BRhurSoghPN6cqKgwAgI-PMaUVCln9UI8" scrolling="no"></iframe>
         </div>
     </div>
-
     <div class="branding">
         <h1 class="title">Spotify Radio</h1>
         <div class="dj-name">DJ Vasile Versace</div>
     </div>
-
     <div class="controls">
         <button class="btn on" onclick="document.getElementById('radio').classList.remove('is-off')">Online</button>
         <button class="btn off" onclick="document.getElementById('radio').classList.add('is-off')">Offline</button>
     </div>
-
 </body>
 </html>
